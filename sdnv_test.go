@@ -1,7 +1,7 @@
 package sdnv_test
 
 import (
-	"gitlab.com/bantl23/sdnv"
+	"github.com/bantl23/sdnv"
 	"testing"
 )
 
