@@ -6,7 +6,7 @@ import (
 
 type Sdnv struct {
 	Value  uint64
-	EncLen uint
+	EncLen uint64
 }
 
 func NewSdnv(val uint64) *Sdnv {
