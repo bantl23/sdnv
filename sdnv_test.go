@@ -5,6 +5,15 @@ import (
 	"testing"
 )
 
+func TestNewSdnv(t *testing.T) {
+	for i := uint64(0); i < 10; i++ {
+		s := sdnv.NewSdnv(i)
+		if i != s.Value {
+			t.Error("expected", i, "==", s.Value)
+		}
+	}
+}
+
 func TestMarshal(t *testing.T) {
 	values := []sdnv.Sdnv{{0xabc}, {0x1234}, {0x4234}, {0x7f}}
 	answers := [][]byte{{0x95, 0x3c}, {0xa4, 0x34}, {0x81, 0x84, 0x34}, {0x7f}}

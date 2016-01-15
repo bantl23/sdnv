@@ -8,6 +8,12 @@ type Sdnv struct {
 	Value uint64
 }
 
+func NewSdnv(val uint64) *Sdnv {
+	s := new(Sdnv)
+	s.Value = val
+	return s
+}
+
 func (s Sdnv) Marshal() []byte {
 	data := []byte{}
 	flag := byte(0)
