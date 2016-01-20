@@ -10,3 +10,27 @@ This library implements the Self-Delimiting Numeric Values (SDNV) protocol.
 The algorithm for implementation and testing was obtained from:
 
 https://tools.ietf.org/html/rfc6256
+
+## Usage
+
+```
+import (
+  "fmt"
+  "github.com/bantl23/sdnv"
+)
+
+func main() {
+  s := sdnv.NewSdnv(0)
+
+  // returns byte array
+  data := s.Marshal()
+
+  // sets sdnv.Value
+  // sets sdnv.EncLen
+  // return err if any
+  err := s.Unmarshal(data)
+  if err != nil {
+    fmt.Println(err)
+  }
+}
+```
