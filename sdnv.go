@@ -2,6 +2,7 @@ package sdnv
 
 import (
 	"errors"
+	"reflect"
 )
 
 type Sdnv struct {
@@ -37,13 +38,17 @@ func (s Sdnv) Marshal() []byte {
 func (s *Sdnv) Unmarshal(data []byte) error {
 	s.Value = uint64(0)
 	s.EncLen = 0
-	for i := 0; i < len(data); i++ {
+	length := int(reflect.TypeOf(s.Value).Size())
+	if len(data) < length {
+		length = len(data)
+	}
+	for i := 0; i < length; i++ {
 		s.Value = s.Value << 7
 		s.Value = s.Value + uint64(data[i]&0x7f)
 		if (data[i] >> 7) == 0 {
 			s.EncLen += 1
 			break
-		} else if i == (len(data) - 1) {
+		} else if i == (length - 1) {
 			return errors.New("Reached end of input without seeing end of SDNV")
 		}
 	}
