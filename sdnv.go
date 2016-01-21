@@ -5,17 +5,22 @@ import (
 	"reflect"
 )
 
+// Sdnv struct containing the value and
+// encoded byte length information
 type Sdnv struct {
 	Value  uint64
 	EncLen uint64
 }
 
+// NewSdnv creates and initializes
+// a new sdnv struct
 func NewSdnv(val uint64) *Sdnv {
 	s := new(Sdnv)
 	s.Value = val
 	return s
 }
 
+// Marshal returns and sdnv encoded byte array
 func (s Sdnv) Marshal() []byte {
 	data := []byte{}
 	flag := byte(0)
@@ -35,6 +40,8 @@ func (s Sdnv) Marshal() []byte {
 	return data
 }
 
+// Unmarshal unencodes a byte array into an
+// sdnv structure
 func (s *Sdnv) Unmarshal(data []byte) error {
 	s.Value = uint64(0)
 	s.EncLen = 0
