@@ -29,7 +29,7 @@ func TestUnmarshal(t *testing.T) {
 	values := []sdnv.Sdnv{{0xabc, 0}, {0x1234, 0}, {0x4234, 0}, {0x7f, 0}}
 	for i := 0; i < len(values); i++ {
 		encoded := values[i].Marshal()
-		ans := sdnv.Sdnv{0, 0}
+		ans := sdnv.Sdnv{Value: 0, EncLen: 0}
 		err := ans.Unmarshal(encoded)
 		if err != nil {
 			t.Error(err)
@@ -41,7 +41,7 @@ func TestUnmarshal(t *testing.T) {
 	}
 
 	val := []byte{0xff, 0xff, 0xff}
-	ans := sdnv.Sdnv{0, 0}
+	ans := sdnv.Sdnv{Value: 0, EncLen: 0}
 	err := ans.Unmarshal(val)
 	if err == nil {
 		t.Error("Expected error but got none")
