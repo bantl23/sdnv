@@ -53,7 +53,7 @@ func (s *Sdnv) Unmarshal(data []byte) error {
 		s.Value = s.Value << 7
 		s.Value = s.Value + uint64(data[i]&0x7f)
 		if (data[i] >> 7) == 0 {
-			s.EncLen += 1
+			s.EncLen++
 			break
 		} else if i == (length - 1) {
 			return errors.New("Reached end of input without seeing end of SDNV")
